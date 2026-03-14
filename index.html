@@ -6,6 +6,7 @@
     <title>Splendor Disco | Oficial</title>
 
     <meta property="og:title" content="Splendor Disco Oficial">
+    <meta property="og:description" content="La radio y plataforma viral más potente de 2026.">
     <meta property="og:image" content="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
     <link rel="icon" type="image/png" href="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
 
@@ -20,23 +21,21 @@
         
         body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; transition: 0.3s; margin:0; overflow-x: hidden; }
         
-        /* CORREGIDO: El slider ahora NO tiene altura fija, respeta el tamaño real de la imagen */
-        .hero { width: 100%; height: auto; position: relative; line-height: 0; }
+        /* CORREGIDO: El slider respeta el tamaño real (height: auto)
+           NUEVO EFECTO: Máscara de opacidad para fundir el pie de la imagen con el fondo (difuminado de corte).
+        */
+        .hero { 
+            width: 100%; 
+            height: auto; 
+            position: relative; 
+            line-height: 0;
+            /* La imagen es 100% visible hasta el 85%, luego se desvanece suavemente hasta el 100% (transparente) */
+            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+        }
         .hero img { width: 100%; height: auto; display: block; object-fit: contain; }
 
-        /* Difuminado mínimo casi imperceptible en la base del slider */
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 15%;
-            background: linear-gradient(to bottom, transparent, var(--bg));
-            pointer-events: none;
-        }
-
-        /* Header posicionado justo debajo del slider */
+        /* Header posicionado justo debajo del slider desvanecido */
         .header-main { position: relative; margin-top: 20px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
         
         .heart-box { width: 140px; height: 140px; flex-shrink: 0; }
@@ -47,7 +46,7 @@
             .heart-box { width: 380px; height: 380px; } 
         }
 
-        /* Títulos de bloques unificados y más estéticos */
+        /* Títulos de bloques unificados */
         .block-title { font-size: 18px; font-weight: 900; text-transform: uppercase; margin-bottom: 25px; text-align: center; letter-spacing: 1px; }
         .block-title span { color: var(--red); }
         .block-title::after { content: ''; display: block; width: 40px; height: 3px; background: var(--red); margin: 6px auto 0; border-radius: 10px; }
@@ -62,6 +61,10 @@
         .grid-conocenos .card-item { width: 280px; }
 
         .pill { display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 50px; color: white; font-weight: 800; font-size: 11px; text-transform: uppercase; }
+        
+        /* Swiper Fix para fade con autoHeight */
+        .swiper-fade .swiper-slide { pointer-events: none; transition-property: opacity; }
+        .swiper-fade .swiper-slide-active { pointer-events: auto; }
     </style>
 </head>
 <body>
@@ -72,7 +75,8 @@
 
     <div class="hero">
         <div class="swiper main-swiper w-full">
-            <div class="swiper-wrapper" id="slider-target"></div>
+            <div class="swiper-wrapper" id="slider-target">
+                </div>
         </div>
     </div>
 
@@ -135,16 +139,18 @@
                 const res = await fetch('datos.json?v=' + Math.random());
                 const data = await res.json();
 
+                // 1. Slider Principal
                 document.getElementById('slider-target').innerHTML = data.slider_principal.map(img => `
                     <div class="swiper-slide"><img src="${img}"></div>
                 `).join('');
                 
+                // Configuración de Swiper para fade suave con autoHeight para imágenes completas
                 new Swiper('.main-swiper', { 
                     loop: true, 
                     effect: 'fade', 
                     fadeEffect: { crossFade: true },
                     autoplay: { delay: 4500 },
-                    autoHeight: true // Ayuda a que el slider cambie de altura si las fotos varían
+                    autoHeight: true // Fundamental para respetar alturas variables sin recortar
                 });
 
                 let html = '';
@@ -186,11 +192,12 @@
 
                 document.getElementById('web-content').innerHTML = html;
 
+                // Iniciar Carruseles laterales
                 ['noticias', 'viral'].forEach(id => {
                     new Swiper(`.s-${id}`, { slidesPerView: 'auto', spaceBetween: 20, freeMode: true });
                 });
 
-            } catch (e) { console.error(e); }
+            } catch (e) { console.error("Error cargando datos:", e); }
         }
 
         function renderCarousel(sec, id) {
