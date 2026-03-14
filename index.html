@@ -8,13 +8,6 @@
     <meta property="og:title" content="Splendor Disco | Oficial">
     <meta property="og:description" content="Conectando con el mejor ritmo.">
     <meta property="og:image" content="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
-    <meta property="og:image:secure_url" content="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
-
     <link rel="icon" type="image/png" href="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,7 +22,7 @@
         
         body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; -webkit-tap-highlight-color: transparent; transition: 0.3s; }
         
-        /* HERO: 60vh Móvil / 80vh PC */
+        /* HERO */
         .hero { 
             width: 100%; height: 60vh; position: relative; 
             mask-image: linear-gradient(to bottom, black 85%, transparent 100%); 
@@ -37,31 +30,42 @@
         }
         .hero img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* HEADER: Encuadre perfecto sin salirse */
+        /* HEADER: Ajustado para que el contenido respire */
         .header-main { 
             position: relative; 
             margin-top: -85px; 
-            padding: 0 6%; 
+            padding: 0 5%; 
             display: flex; 
             align-items: center; 
-            justify-content: center; 
-            gap: 20px; 
+            justify-content: space-between; 
+            gap: 10px; 
             z-index: 100; 
-            max-width: 100%;
+            width: 100%;
             box-sizing: border-box;
+        }
+
+        /* TÍTULO RESPONSIVO: El secreto para que no se corte */
+        .main-title {
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.85;
+            /* clamp(mínimo, preferido, máximo) */
+            font-size: clamp(30px, 10vw, 42px); 
+            flex: 1;
         }
         
         .heart-box { 
-            width: 135px; height: 135px; border-radius: 2.5rem; 
-            border: 6px solid white; box-shadow: 0 20px 45px rgba(0,0,0,0.15); 
+            width: 130px; height: 130px; border-radius: 2.2rem; 
+            border: 5px solid white; box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
             overflow: hidden; background: white; flex-shrink: 0; 
         }
         .heart-box img { width: 100%; height: 100%; object-fit: contain; }
         
         @media (min-width: 1024px) { 
             .hero { height: 80vh; }
-            .header-main { margin-top: -180px; gap: 60px; max-width: 1280px; margin-left: auto; margin-right: auto; } 
-            .heart-box { width: 400px; height: 400px; border-radius: 5.5rem; border: 15px solid white; } 
+            .header-main { margin-top: -180px; gap: 40px; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0; } 
+            .heart-box { width: 400px; height: 400px; border-radius: 5rem; border: 12px solid white; } 
+            .main-title { font-size: 95px; }
         }
 
         .block-title { font-size: 24px; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; text-align: center; width: 100%; }
@@ -71,9 +75,7 @@
         .card { background: var(--card); border-radius: 1.8rem; padding: 12px; border: 1px solid var(--border); }
         .card img { border-radius: 1.5rem; width: 100%; aspect-ratio: 1/1; object-fit: cover; }
 
-        /* PÍLDORAS REDES: Diseño restaurado */
-        .pill { display: flex; align-items: center; gap: 10px; padding: 12px 28px; border-radius: 50px; color: white; font-weight: 800; font-size: 11px; text-transform: uppercase; transition: 0.3s; }
-        .pill:hover { transform: scale(1.05); }
+        .pill { display: flex; align-items: center; gap: 10px; padding: 12px 25px; border-radius: 50px; color: white; font-weight: 800; font-size: 11px; text-transform: uppercase; transition: 0.2s; }
 
         .player-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #000; padding: 15px 25px; z-index: 5000; display: flex; align-items: center; justify-content: space-between; border-top: 4px solid var(--red); color: white; }
 
@@ -82,7 +84,7 @@
 </head>
 <body>
 
-    <button id="mode-btn" style="position:fixed; top:20px; right:20px; z-index:6000; background:var(--red); color:white; width:45px; height:45px; border-radius:50%; border:none; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+    <button id="mode-btn" style="position:fixed; top:20px; right:20px; z-index:6000; background:var(--red); color:white; width:45px; height:45px; border-radius:50%; border:none; display:flex; align-items:center; justify-content:center;">
         <i class="fas fa-moon" id="mode-icon"></i>
     </button>
 
@@ -93,11 +95,11 @@
     </div>
 
     <header class="header-main">
-        <div class="flex-1 overflow-hidden">
-            <h1 class="font-black text-[38px] md:text-[90px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
+        <div class="main-title">
+            SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span>
         </div>
         <div class="heart-box">
-            <img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" alt="Logo Principal">
+            <img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" alt="Logo">
         </div>
     </header>
 
@@ -160,12 +162,10 @@
                     html += `<div class="mt-16"><h2 class="block-title">${secConocenos.nombre} <span>${secConocenos.sub}</span></h2><div class="swiper s-conocenos !overflow-visible"><div class="swiper-wrapper">${secConocenos.items.map(i => `<div class="swiper-slide" style="width:220px"><div class="card"><a href="${i.url}" target="_blank"><img src="${i.img}"><p class="mt-3 text-center text-[11px] font-bold uppercase truncate">${i.titulo}</p></a></div></div>`).join('')}</div></div></div>`;
                 }
 
-                // TV PRIORITARIA
                 if (data.url_tv) {
                     html += `<div class="mt-20"><h2 class="block-title">TV EN <span>VIVO</span></h2><div class="card overflow-hidden bg-black !p-0 aspect-video"><video id="tv-player" class="w-full h-full" controls playsinline></video></div></div>`;
                 }
 
-                // REDES SOCIALES RESTAURADAS
                 html += `
                 <div class="mt-20 text-center">
                     <h2 class="block-title">Nuestras <span>Redes</span></h2>
