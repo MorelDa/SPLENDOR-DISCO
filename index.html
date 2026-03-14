@@ -20,21 +20,22 @@
         
         body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; transition: 0.3s; margin:0; overflow-x: hidden; }
         
-        /* Slider Proporcional con Difuminado de Corte */
+        /* Slider Proporcional con Desvanecimiento */
         .hero { 
             width: 100%; 
             height: auto; 
             position: relative; 
             line-height: 0;
-            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            z-index: 10;
         }
         .hero img { width: 100%; height: auto; display: block; object-fit: contain; }
 
-        /* HEADER SUBIDO: Superpuesto ligeramente sobre el slider */
+        /* HEADER MUCHO MÁS ARRIBA */
         .header-main { 
             position: relative; 
-            margin-top: -60px; /* Ajuste para subirlo sobre el slider */
+            margin-top: -90px; /* Subido más en móvil */
             padding: 0 6%; 
             display: flex; 
             align-items: center; 
@@ -43,17 +44,20 @@
             z-index: 100; 
         }
         
-        .heart-box { width: 150px; height: 150px; flex-shrink: 0; }
+        .heart-box { width: 160px; height: 160px; flex-shrink: 0; }
         .heart-box img { width: 100%; height: 100%; object-fit: contain; }
         
         @media (min-width: 1024px) { 
-            .header-main { margin-top: -120px; gap: 60px; } 
-            .heart-box { width: 420px; height: 420px; } 
+            .header-main { 
+                margin-top: -180px; /* Subido mucho más en PC */
+                gap: 60px; 
+            } 
+            .heart-box { width: 450px; height: 450px; } 
         }
 
-        /* TITULOS DE BLOQUE MÁS GRANDES */
+        /* Títulos de bloque grandes */
         .block-title { 
-            font-size: 32px; /* Aumentado */
+            font-size: 32px; 
             font-weight: 900; 
             text-transform: uppercase; 
             margin-bottom: 30px; 
@@ -72,7 +76,7 @@
             border-radius: 10px; 
         }
 
-        /* Tarjetas */
+        /* Estilo de Tarjetas */
         .card { background: var(--card); border-radius: 1.5rem; padding: 10px; border: 1px solid var(--border); transition: 0.3s; height: auto; }
         .card img { border-radius: 1rem; width: 100%; height: auto; display: block; }
 
@@ -98,7 +102,7 @@
 
     <header class="header-main">
         <div class="flex-1">
-            <h1 class="font-black text-[35px] md:text-[95px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
+            <h1 class="font-black text-[35px] md:text-[100px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
         </div>
         <div class="heart-box">
             <img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" alt="Logo Principal">
@@ -168,11 +172,9 @@
                 });
 
                 let html = '';
-                // NOTICIAS
                 const secNoticias = data.secciones.find(s => s.nombre === "NOTICIAS");
                 if(secNoticias) html += renderCarousel(secNoticias, "noticias");
 
-                // CONÓCENOS
                 const secConocenos = data.secciones.find(s => s.nombre === "CONÓCENOS");
                 if(secConocenos) {
                     html += `
@@ -192,7 +194,6 @@
                     </div>`;
                 }
 
-                // REDES
                 html += `
                 <div class="mt-20 text-center">
                     <h2 class="block-title">Nuestras <span>Redes</span></h2>
@@ -204,7 +205,6 @@
                     </div>
                 </div>`;
 
-                // VIRAL
                 const secViral = data.secciones.find(s => s.nombre === "LO MÁS");
                 if(secViral) html += renderCarousel(secViral, "viral");
 
