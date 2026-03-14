@@ -3,68 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Splendor Disco | Oficial</title>
+    <title>Splendor Disco | 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        :root { --red: #e60000; --bg: #0d0d0d; --text: #ffffff; --card: #1a1a1a; --border: rgba(255,255,255,0.1); }
-        body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; }
-        .hero { width: 100%; height: 50vh; mask-image: linear-gradient(to bottom, black 80%, transparent 100%); }
+        :root { --red: #ff0000; --bg: #ffffff; --text: #000000; --card: #f4f4f4; --border: rgba(0,0,0,0.1); }
+        body.dark-mode { --bg: #0a0a0a; --text: #ffffff; --card: #151515; --border: rgba(255,255,255,0.1); }
+        
+        body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; transition: 0.3s; overflow-x: hidden; }
+
+        /* Pildoras de Redes */
+        .pill { display: flex; align-items: center; gap: 10px; padding: 10px 20px; border-radius: 50px; color: white; font-weight: 700; font-size: 13px; transition: 0.3s; }
+        .pill:hover { transform: scale(1.05); }
+
+        /* Carrusel Noticias */
+        .news-card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); height: 100%; }
+        .news-card img { width: 100%; height: 180px; object-fit: cover; }
+        .news-title { padding: 15px; font-weight: 800; font-size: 14px; line-height: 1.2; text-transform: uppercase; }
+
+        /* Estilo Hero */
+        .hero { width: 100%; height: 40vh; position: relative; }
         .hero img { width: 100%; height: 100%; object-fit: cover; }
-        .header-main { position: relative; margin-top: -60px; padding: 0 6%; display: flex; align-items: center; justify-content: center; z-index: 100; }
-        .grid-viral { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        @media (min-width: 1024px) { .grid-viral { grid-template-columns: repeat(4, 1fr); } .header-main { margin-top: -120px; } }
-        .card { background: var(--card); border-radius: 15px; overflow: hidden; border: 1px solid var(--border); transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: var(--red); }
-        .block-title { font-size: 26px; font-weight: 900; text-transform: uppercase; text-align: center; margin-bottom: 30px; }
-        .block-title span { color: var(--red); }
-        .player-bar { position: fixed; bottom: 0; width: 100%; background: #000; padding: 12px 25px; z-index: 5000; display: flex; align-items: center; justify-content: space-between; border-top: 4px solid var(--red); }
+        .hero-blur { position: absolute; bottom: 0; width: 100%; height: 80px; background: linear-gradient(to top, var(--bg), transparent); }
+
+        .block-title { font-size: 20px; font-weight: 800; border-left: 4px solid var(--red); padding-left: 12px; margin-bottom: 20px; text-transform: uppercase; }
+        
+        #mode-toggle { position: fixed; top: 20px; right: 20px; z-index: 6000; background: var(--red); color: white; width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; }
+        
+        .player-bar { position: fixed; bottom: 0; width: 100%; background: #000; padding: 10px 20px; z-index: 5000; display: flex; align-items: center; justify-content: space-between; border-top: 3px solid var(--red); color: white; }
     </style>
 </head>
 <body>
+
+    <button id="mode-toggle"><i class="fas fa-moon"></i></button>
     <audio id="main-stream" crossorigin="anonymous"></audio>
 
     <div class="hero">
-        <div class="swiper main-swiper h-full"><div class="swiper-wrapper" id="slider-target"></div></div>
+        <div class="swiper main-swiper h-full">
+            <div class="swiper-wrapper" id="slider-target"></div>
+        </div>
+        <div class="hero-blur"></div>
     </div>
 
-    <header class="header-main">
-        <div class="flex-1"><h1 class="font-black text-[30px] md:text-[70px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#e60000]">DISCO.</span></h1></div>
-        <div class="w-32 md:w-64"><img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png"></div>
-    </header>
+    <main class="max-w-6xl mx-auto px-4 pt-10 pb-32">
+        
+        <section class="mb-16">
+            <h2 class="block-title">Splendor <span>Disco</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="nosotros-target"></div>
+        </section>
 
-    <main class="pt-10 px-4 max-w-7xl mx-auto pb-32">
-        <section><h2 class="block-title">LO MÁS <span>VIRAL</span></h2><div class="grid-viral" id="viral-target"></div></section>
-        <section class="mt-24"><h2 class="block-title">CONÓCENOS <span>MÁS</span></h2><div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="nosotros-target"></div></section>
-        <section class="mt-24 text-center"><h2 class="block-title">Nuestras <span>Redes</span></h2><div class="flex flex-wrap justify-center gap-4" id="redes-target"></div></section>
+        <section class="mb-16">
+            <h2 class="block-title">Nuestras <span>Redes</span></h2>
+            <div class="flex flex-wrap gap-3" id="redes-target"></div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="block-title">Noticias <span>2026</span></h2>
+            <div class="swiper news-swiper">
+                <div class="swiper-wrapper" id="news-target"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="block-title">Lo más <span>Viral</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="viral-target"></div>
+        </section>
+
     </main>
 
     <div class="player-bar">
-        <div class="flex items-center gap-4"><img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" class="w-10 h-10">
-        <div><p id="radio-title" class="font-bold text-[11px] uppercase truncate w-32">Cargando...</p><span class="text-red-500 text-[9px] font-black uppercase">En Vivo</span></div></div>
-        <button id="play-btn" class="bg-[#e60000] w-12 h-12 rounded-full text-white"><i class="fas fa-play" id="play-icon"></i></button>
+        <div class="flex items-center gap-3">
+            <img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" class="w-10 h-10">
+            <div>
+                <p id="radio-title" class="text-[10px] font-bold uppercase truncate w-32">Splendor Radio</p>
+                <span class="text-red-600 text-[8px] font-black">EN VIVO</span>
+            </div>
+        </div>
+        <button id="play-btn" class="bg-red-600 w-10 h-10 rounded-full"><i class="fas fa-play" id="play-icon"></i></button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        async function loadContent() {
-            try {
-                const res = await fetch('contenido.json');
-                const data = await res.json();
-                document.getElementById('slider-target').innerHTML = data.carrusel_principal.map(s => `<div class="swiper-slide"><img src="${s.imagen}"></div>`).join('');
-                new Swiper('.main-swiper', { loop: true, effect: 'fade', autoplay: { delay: 4000 } });
-                document.getElementById('viral-target').innerHTML = data.viral.map(v => `<a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" class="card"><img src="https://i.ytimg.com/vi/${v.id}/mqdefault.jpg"><div class="p-4 text-[11px] font-black uppercase">${v.titulo}</div></a>`).join('');
-                document.getElementById('nosotros-target').innerHTML = data.seccion_nosotros.map(n => `<a href="${n.link}" target="_blank" class="card flex flex-col items-center p-10 text-center"><img src="${n.imagen}" class="w-24 mb-4"><h3 class="font-black uppercase text-xl">${n.titulo}</h3><span class="text-red-500 text-[10px] font-bold mt-2">CLICK AQUÍ</span></a>`).join('');
-                document.getElementById('redes-target').innerHTML = data.redes.map(r => `<a href="${r.url}" class="px-8 py-3 rounded-full text-[11px] font-bold uppercase" style="background:${r.color}; color:white;">${r.nombre}</a>`).join('');
-            } catch (err) { console.error(err); }
+        async function load() {
+            const res = await fetch('contenido.json');
+            const data = await res.json();
+
+            // Slider Principal
+            document.getElementById('slider-target').innerHTML = data.carrusel_principal.map(s => `<div class="swiper-slide"><img src="${s.imagen}"></div>`).join('');
+            new Swiper('.main-swiper', { loop: true, effect: 'fade', autoplay: { delay: 4000 } });
+
+            // Nosotros
+            document.getElementById('nosotros-target').innerHTML = data.seccion_nosotros.map(n => `
+                <a href="${n.link}" target="_blank" class="flex items-center gap-4 p-4 bg-[var(--card)] rounded-xl border border-[var(--border)]">
+                    <img src="${n.imagen}" class="w-12 h-12 object-contain">
+                    <span class="font-bold uppercase text-xs">${n.titulo}</span>
+                </a>
+            `).join('');
+
+            // Redes (Píldoras)
+            document.getElementById('redes-target').innerHTML = data.redes.map(r => `
+                <a href="${r.url}" target="_blank" class="pill" style="background:${r.color}">
+                    <i class="${r.icon}"></i> ${r.nombre}
+                </a>
+            `).join('');
+
+            // Noticias (Carrusel - Solo Imagen y Título)
+            document.getElementById('news-target').innerHTML = data.noticias.map(n => `
+                <div class="swiper-slide">
+                    <a href="https://morelda.github.io/SPLENDOR-NEW/" class="news-card block">
+                        <img src="${n.img}">
+                        <div class="news-title">${n.titulo}</div>
+                    </a>
+                </div>
+            `).join('');
+            new Swiper('.news-swiper', { 
+                slidesPerView: 1.2, spaceBetween: 15, loop: true,
+                breakpoints: { 768: { slidesPerView: 3 } }
+            });
+
+            // Virales
+            document.getElementById('viral-target').innerHTML = data.viral.map(v => `
+                <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" class="news-card block">
+                    <img src="https://i.ytimg.com/vi/${v.id}/mqdefault.jpg">
+                    <div class="p-3 text-[10px] font-bold uppercase">${v.titulo}</div>
+                </a>
+            `).join('');
         }
-        loadContent();
-        const audio = document.getElementById('main-stream'), playBtn = document.getElementById('play-btn'), playIcon = document.getElementById('play-icon');
-        playBtn.onclick = () => {
-            if (audio.paused) { audio.src = "https://miestacion.turadioonline.com.ar:8342/stream?t=" + Date.now(); audio.play(); playIcon.className = 'fas fa-pause'; }
-            else { audio.pause(); audio.src = ""; playIcon.className = 'fas fa-play'; }
+
+        load();
+
+        // Modo Oscuro
+        document.getElementById('mode-toggle').onclick = () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('mode-toggle').innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        };
+
+        // Radio
+        const audio = document.getElementById('main-stream'), pBtn = document.getElementById('play-btn'), pIcon = document.getElementById('play-icon');
+        pBtn.onclick = () => {
+            if (audio.paused) { audio.src = "https://miestacion.turadioonline.com.ar:8342/stream?t="+Date.now(); audio.play(); pIcon.className='fas fa-pause'; }
+            else { audio.pause(); audio.src=""; pIcon.className='fas fa-play'; }
         };
     </script>
 </body>
