@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Splendor Disco | Oficial</title>
 
+    <meta property="og:title" content="Splendor Disco | Oficial">
+    <meta property="og:description" content="Conectando con el mejor ritmo.">
+    <meta property="og:image" content="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
+    <meta property="og:image:secure_url" content="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
+
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -17,7 +29,7 @@
         
         body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; -webkit-tap-highlight-color: transparent; transition: 0.3s; }
         
-        /* HERO: TAMAÑOS EXACTOS DEL CÓDIGO DE REFERENCIA */
+        /* HERO: 60vh Móvil / 80vh PC */
         .hero { 
             width: 100%; height: 60vh; position: relative; 
             mask-image: linear-gradient(to bottom, black 85%, transparent 100%); 
@@ -25,43 +37,52 @@
         }
         .hero img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* HEADER: POSICIÓN Y MÁRGENES IGUALADOS */
-        .header-main { position: relative; margin-top: -100px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
+        /* HEADER: Encuadre perfecto sin salirse */
+        .header-main { 
+            position: relative; 
+            margin-top: -85px; 
+            padding: 0 6%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 20px; 
+            z-index: 100; 
+            max-width: 100%;
+            box-sizing: border-box;
+        }
         
-        /* LOGO: TAMAÑOS Y BORDES PREMIUM IGUALADOS */
         .heart-box { 
-            width: 140px; height: 140px; border-radius: 2.5rem; 
+            width: 135px; height: 135px; border-radius: 2.5rem; 
             border: 6px solid white; box-shadow: 0 20px 45px rgba(0,0,0,0.15); 
             overflow: hidden; background: white; flex-shrink: 0; 
         }
-        .heart-box img { width: 100%; height: 100%; object-fit: cover; }
+        .heart-box img { width: 100%; height: 100%; object-fit: contain; }
         
         @media (min-width: 1024px) { 
             .hero { height: 80vh; }
-            .header-main { margin-top: -200px; gap: 60px; } 
+            .header-main { margin-top: -180px; gap: 60px; max-width: 1280px; margin-left: auto; margin-right: auto; } 
             .heart-box { width: 400px; height: 400px; border-radius: 5.5rem; border: 15px solid white; } 
         }
 
-        /* TÍTULOS DE BLOQUE: TAMAÑO 24PX SEGÚN REFERENCIA */
         .block-title { font-size: 24px; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; text-align: center; width: 100%; }
         .block-title span { color: var(--red); }
         .block-title::after { content: ''; display: block; width: 50px; height: 4px; background: var(--red); margin: 8px auto 0; border-radius: 10px; }
 
-        /* CARDS: DISEÑO LIMPIO 1:1 */
         .card { background: var(--card); border-radius: 1.8rem; padding: 12px; border: 1px solid var(--border); }
         .card img { border-radius: 1.5rem; width: 100%; aspect-ratio: 1/1; object-fit: cover; }
 
+        /* PÍLDORAS REDES: Diseño restaurado */
+        .pill { display: flex; align-items: center; gap: 10px; padding: 12px 28px; border-radius: 50px; color: white; font-weight: 800; font-size: 11px; text-transform: uppercase; transition: 0.3s; }
+        .pill:hover { transform: scale(1.05); }
+
         .player-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #000; padding: 15px 25px; z-index: 5000; display: flex; align-items: center; justify-content: space-between; border-top: 4px solid var(--red); color: white; }
 
-        /* FLUIDEZ SWIPER AJUSTADA */
-        .swiper-wrapper {
-            transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1) !important;
-        }
+        .swiper-wrapper { transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1) !important; }
     </style>
 </head>
 <body>
 
-    <button id="mode-btn" style="position:fixed; top:20px; right:20px; z-index:6000; background:var(--red); color:white; width:45px; height:45px; border-radius:50%; border:none; display:flex; align-items:center; justify-content:center;">
+    <button id="mode-btn" style="position:fixed; top:20px; right:20px; z-index:6000; background:var(--red); color:white; width:45px; height:45px; border-radius:50%; border:none; display:flex; align-items:center; justify-content:center; cursor:pointer;">
         <i class="fas fa-moon" id="mode-icon"></i>
     </button>
 
@@ -72,11 +93,11 @@
     </div>
 
     <header class="header-main">
-        <div class="flex-1">
-            <h1 class="font-black text-[40px] md:text-[90px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
+        <div class="flex-1 overflow-hidden">
+            <h1 class="font-black text-[38px] md:text-[90px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
         </div>
         <div class="heart-box">
-            <img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" alt="Logo Splendor">
+            <img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" alt="Logo Principal">
         </div>
     </header>
 
@@ -131,12 +152,9 @@
                 new Swiper('.main-swiper', { loop: true, effect: 'fade', autoplay: { delay: 4000 } });
 
                 let html = '';
-
-                // NOTICIAS
                 const secNoticias = data.secciones.find(s => s.nombre === "NOTICIAS");
                 if(secNoticias) html += renderCarousel(secNoticias, 0);
 
-                // CONÓCENOS
                 const secConocenos = data.secciones.find(s => s.nombre === "CONÓCENOS");
                 if(secConocenos) {
                     html += `<div class="mt-16"><h2 class="block-title">${secConocenos.nombre} <span>${secConocenos.sub}</span></h2><div class="swiper s-conocenos !overflow-visible"><div class="swiper-wrapper">${secConocenos.items.map(i => `<div class="swiper-slide" style="width:220px"><div class="card"><a href="${i.url}" target="_blank"><img src="${i.img}"><p class="mt-3 text-center text-[11px] font-bold uppercase truncate">${i.titulo}</p></a></div></div>`).join('')}</div></div></div>`;
@@ -147,10 +165,18 @@
                     html += `<div class="mt-20"><h2 class="block-title">TV EN <span>VIVO</span></h2><div class="card overflow-hidden bg-black !p-0 aspect-video"><video id="tv-player" class="w-full h-full" controls playsinline></video></div></div>`;
                 }
 
-                // REDES
-                html += `<div class="mt-20 text-center"><h2 class="block-title">Nuestras <span>Redes</span></h2><div class="flex flex-wrap justify-center gap-4 mt-6">${data.redes_pildoras.map(r => `<a href="${r.url}" target="_blank" style="background:${r.color}" class="px-8 py-3 rounded-full text-white font-bold uppercase text-[10px]"><i class="${r.icon} mr-2"></i>${r.nombre}</a>`).join('')}</div></div>`;
+                // REDES SOCIALES RESTAURADAS
+                html += `
+                <div class="mt-20 text-center">
+                    <h2 class="block-title">Nuestras <span>Redes</span></h2>
+                    <div class="flex flex-wrap justify-center gap-4 mt-6">
+                        ${data.redes_pildoras.map(r => `
+                            <a href="${r.url}" target="_blank" class="pill" style="background:${r.color}">
+                                <i class="${r.icon}"></i> ${r.nombre}
+                            </a>`).join('')}
+                    </div>
+                </div>`;
 
-                // LO MÁS VIRAL (Añadido según instrucciones de historial)
                 const secViral = data.secciones.find(s => s.nombre === "LO MÁS");
                 if(secViral) html += renderCarousel(secViral, 1);
 
@@ -162,13 +188,7 @@
                     else if (video.canPlayType('application/vnd.apple.mpegurl')) { video.src = data.url_tv; }
                 }
 
-                const swConfig = {
-                    slidesPerView: 'auto',
-                    spaceBetween: 15,
-                    freeMode: { enabled: true, sticky: false, momentum: true, momentumRatio: 1.5, momentumVelocityRatio: 1 },
-                    grabCursor: true
-                };
-
+                const swConfig = { slidesPerView: 'auto', spaceBetween: 15, freeMode: { enabled: true, sticky: false, momentum: true, momentumRatio: 1.5, momentumVelocityRatio: 1 }, grabCursor: true };
                 new Swiper('.s-0', swConfig);
                 new Swiper('.s-1', swConfig);
                 new Swiper('.s-conocenos', swConfig);
@@ -179,7 +199,6 @@
         function renderCarousel(sec, idx) {
             return `<div class="mt-16"><h2 class="block-title">${sec.nombre} <span>${sec.sub}</span></h2><div class="swiper s-${idx} !overflow-visible"><div class="swiper-wrapper">${sec.items.map(i => `<div class="swiper-slide" style="width:220px"><div class="card"><a href="${i.url}" target="_blank"><img src="${i.img}"><p class="mt-3 text-center text-[11px] font-bold uppercase truncate">${i.titulo}</p></a></div></div>`).join('')}</div></div></div>`;
         }
-
         window.onload = loadData;
     </script>
 </body>
