@@ -5,41 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Splendor Disco | Oficial</title>
 
+    <meta property="og:title" content="Splendor Disco Oficial">
+    <meta property="og:description" content="La radio y plataforma viral más potente de 2026.">
+    <meta property="og:image" content="https://i.postimg.cc/gJkV5jGW/k.png">
+    
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/gJkV5jGW/k.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        :root { --red: #ff0000; --bg: #ffffff; --text: #1a1a1a; --card: #f8f8f8; --border: rgba(0,0,0,0.08); }
+        :root { --red: #ff0000; --bg: #ffffff; --text: #1a1a1a; --card: #f4f4f4; --border: rgba(0,0,0,0.1); }
         body.dark-mode { --bg: #0d0d0d; --text: #ffffff; --card: #1a1a1a; --border: rgba(255,255,255,0.1); }
-        body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; -webkit-tap-highlight-color: transparent; transition: 0.3s; }
         
+        body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; transition: 0.3s; margin:0; overflow-x: hidden; }
+        
+        /* Slider superior: Ajustado para mostrar desde arriba y cortar abajo */
         .hero { width: 100%; height: 60vh; position: relative; mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); }
-        .hero img { width: 100%; height: 100%; object-fit: cover; }
+        .hero img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
         .header-main { position: relative; margin-top: -100px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
-        .heart-box { width: 140px; height: 140px; border-radius: 2.5rem; border: 6px solid white; box-shadow: 0 20px 45px rgba(0,0,0,0.15); overflow: hidden; background: white; flex-shrink: 0; }
+        .heart-box { width: 140px; height: 140px; border-radius: 2.5rem; border: 6px solid white; box-shadow: 0 20px 45px rgba(0,0,0,0.2); overflow: hidden; background: white; flex-shrink: 0; }
         
         @media (min-width: 1024px) { .hero { height: 80vh; } .header-main { margin-top: -200px; gap: 60px; } .heart-box { width: 400px; height: 400px; border-radius: 5.5rem; border: 15px solid white; } }
 
-        .block-title { font-size: 24px; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; text-align: center; width: 100%; }
+        .block-title { font-size: 24px; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; text-align: center; }
         .block-title span { color: var(--red); }
         .block-title::after { content: ''; display: block; width: 50px; height: 4px; background: var(--red); margin: 8px auto 0; border-radius: 10px; }
 
-        .card { background: var(--card); border-radius: 1.8rem; padding: 12px; border: 1px solid var(--border); transition: 0.3s; }
+        .card { background: var(--card); border-radius: 1.8rem; padding: 12px; border: 1px solid var(--border); transition: 0.3s; height: 100%; }
+        .card:hover { transform: scale(1.02); }
         .card img { border-radius: 1.5rem; width: 100%; aspect-ratio: 16/9; object-fit: cover; }
 
         .pill { display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 50px; color: white; font-weight: 800; font-size: 11px; text-transform: uppercase; transition: 0.3s; }
+        .pill:hover { opacity: 0.8; transform: translateY(-2px); }
 
         .player-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #000; padding: 15px 25px; z-index: 5000; display: flex; align-items: center; justify-content: space-between; border-top: 4px solid var(--red); color: white; }
-
+        
         .swiper-wrapper { transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1) !important; }
     </style>
 </head>
 <body>
 
-    <button id="mode-btn" style="position:fixed; top:20px; right:20px; z-index:6000; background:var(--red); color:white; width:45px; height:45px; border-radius:50%; border:none;"><i class="fas fa-moon"></i></button>
+    <button id="mode-btn" style="position:fixed; top:20px; right:20px; z-index:6000; background:var(--red); color:white; width:45px; height:45px; border-radius:50%; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;">
+        <i class="fas fa-moon" id="mode-icon"></i>
+    </button>
+
     <audio id="main-stream" crossorigin="anonymous"></audio>
 
     <div class="hero">
@@ -53,19 +66,19 @@
             <h1 class="font-black text-[40px] md:text-[90px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
         </div>
         <div class="heart-box">
-            <img id="radio-art-big" src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" class="w-full h-full object-contain p-4 bg-white">
+            <img src="https://i.postimg.cc/gJkV5jGW/k.png" class="w-full h-full object-contain p-4 bg-white">
         </div>
     </header>
 
     <main id="web-content" class="pt-10 px-4 max-w-7xl mx-auto w-full"></main>
     
-    <footer class="text-center py-20 pb-40 text-[10px] font-bold opacity-50 uppercase">© 2026 SPLENDOR DISCO</footer>
+    <footer class="text-center py-20 pb-40 text-[10px] font-bold opacity-50 uppercase">© 2026 SPLENDOR DISCO | 100% VIRAL</footer>
 
     <div class="player-bar">
         <div class="flex items-center gap-4">
-            <img id="radio-art-small" src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" class="w-12 h-12 rounded-xl object-contain bg-white">
+            <img src="https://i.postimg.cc/gJkV5jGW/k.png" class="w-12 h-12 rounded-xl object-contain bg-white">
             <div>
-                <p id="radio-title" class="font-bold text-[10px] uppercase truncate w-32">Conectando...</p>
+                <p class="font-bold text-[10px] uppercase truncate w-32">Splendor Live</p>
                 <span class="text-red-500 text-[8px] font-black uppercase">En Directo</span>
             </div>
         </div>
@@ -78,12 +91,24 @@
     <script>
         const audio = document.getElementById('main-stream');
         const playBtn = document.getElementById('play-btn');
-        const playIcon = document.getElementById('play-icon');
         const streamUrl = "https://miestacion.turadioonline.com.ar:8342/stream";
 
         playBtn.onclick = () => {
-            if (audio.paused) { audio.src = streamUrl + "?t=" + Date.now(); audio.play(); playIcon.className = 'fas fa-pause'; }
-            else { audio.pause(); audio.src = ""; playIcon.className = 'fas fa-play'; }
+            if (audio.paused) {
+                audio.src = streamUrl + "?t=" + Date.now();
+                audio.play();
+                document.getElementById('play-icon').className = 'fas fa-pause';
+            } else {
+                audio.pause();
+                audio.src = "";
+                document.getElementById('play-icon').className = 'fas fa-play';
+            }
+        };
+
+        document.getElementById('mode-btn').onclick = () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.getElementById('mode-icon');
+            icon.className = document.body.classList.contains('dark-mode') ? 'fas fa-sun' : 'fas fa-moon';
         };
 
         async function loadData() {
@@ -91,22 +116,22 @@
                 const res = await fetch('datos.json?v=' + Math.random());
                 const data = await res.json();
 
-                // Slider Superior
-                document.getElementById('slider-target').innerHTML = data.slider_principal.map(img => `<div class="swiper-slide !w-full"><img src="${img}"></div>`).join('');
+                // Slider
+                document.getElementById('slider-target').innerHTML = data.slider_principal.map(img => `<div class="swiper-slide"><img src="${img}"></div>`).join('');
                 new Swiper('.main-swiper', { loop: true, effect: 'fade', autoplay: { delay: 4000 } });
 
-                let html = '';
+                let finalHtml = '';
 
                 // 1. NOTICIAS
                 const secNoticias = data.secciones.find(s => s.nombre === "NOTICIAS");
-                if(secNoticias) html += renderSection(secNoticias, 0);
+                if(secNoticias) finalHtml += renderSection(secNoticias, "noticias");
 
                 // 2. CONÓCENOS
-                const secNosotros = data.secciones.find(s => s.nombre === "CONÓCENOS");
-                if(secNosotros) html += renderSection(secNosotros, 1);
+                const secConocenos = data.secciones.find(s => s.nombre === "CONÓCENOS");
+                if(secConocenos) finalHtml += renderSection(secConocenos, "conocenos");
 
-                // 3. REDES (PENÚLTIMO)
-                html += `
+                // 3. REDES (Penúltimo)
+                finalHtml += `
                 <div class="mt-20 text-center">
                     <h2 class="block-title">Nuestras <span>Redes</span></h2>
                     <div class="flex flex-wrap justify-center gap-4 mt-6">
@@ -114,17 +139,17 @@
                     </div>
                 </div>`;
 
-                // 4. LO MÁS VIRAL (ÚLTIMO)
+                // 4. VIRALES (Último)
                 const secViral = data.secciones.find(s => s.nombre === "LO MÁS");
-                if(secViral) html += renderSection(secViral, 2);
+                if(secViral) finalHtml += renderSection(secViral, "viral");
 
-                document.getElementById('web-content').innerHTML = html;
+                document.getElementById('web-content').innerHTML = finalHtml;
 
-                // Inicializar Swipers Fluidos
-                data.secciones.forEach((_, idx) => {
-                    new Swiper(`.s-${idx}`, {
-                        slidesPerView: 'auto', spaceBetween: 20,
-                        freeMode: { enabled: true, sticky: false, momentum: true, momentumRatio: 5, momentumVelocityRatio: 2, momentumBounce: false },
+                ['noticias', 'conocenos', 'viral'].forEach(id => {
+                    new Swiper(`.s-${id}`, {
+                        slidesPerView: 'auto',
+                        spaceBetween: 20,
+                        freeMode: { enabled: true, momentum: true, momentumRatio: 5 },
                         grabCursor: true
                     });
                 });
@@ -133,10 +158,23 @@
         }
 
         function renderSection(sec, id) {
-            return `<div class="mt-16"><h2 class="block-title">${sec.nombre} <span>${sec.sub}</span></h2>
-                <div class="swiper s-${id} !overflow-visible"><div class="swiper-wrapper">
-                ${sec.items.map(i => `<div class="swiper-slide" style="width:260px"><div class="card"><a href="${i.url}" target="_blank"><img src="${i.img}"><p class="mt-3 text-center text-[11px] font-bold uppercase truncate">${i.titulo}</p></a></div></div>`).join('')}
-                </div></div></div>`;
+            return `
+            <div class="mt-16">
+                <h2 class="block-title">${sec.nombre} <span>${sec.sub}</span></h2>
+                <div class="swiper s-${id} !overflow-visible">
+                    <div class="swiper-wrapper">
+                        ${sec.items.map(item => `
+                            <div class="swiper-slide" style="width:260px">
+                                <div class="card">
+                                    <a href="${item.url}" target="_blank">
+                                        <img src="${item.img}">
+                                        <p class="mt-3 text-center text-[11px] font-bold uppercase truncate">${item.titulo}</p>
+                                    </a>
+                                </div>
+                            </div>`).join('')}
+                    </div>
+                </div>
+            </div>`;
         }
 
         window.onload = loadData;
