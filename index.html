@@ -6,9 +6,9 @@
     <title>Splendor Disco | Oficial</title>
 
     <meta property="og:title" content="Splendor Disco Oficial">
-    <meta property="og:description" content="La radio y plataforma viral más potente de 2026.">
-    <meta property="og:image" content="https://i.postimg.cc/gJkV5jGW/k.png">
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/gJkV5jGW/k.png">
+    <meta property="og:description" content="OTRO LEVEL.">
+    <meta property="og:image" content="https://i.postimg.cc/85PR3cTQ/gvkgv.png">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/85PR3cTQ/gvkgv.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
@@ -21,28 +21,28 @@
         
         body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; transition: 0.3s; margin:0; overflow-x: hidden; }
         
-        /* Slider superior ajustado */
-        .hero { width: 100%; height: 75vh; position: relative; mask-image: linear-gradient(to bottom, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%); }
+        /* Slider con difuminado muy suave en el pie */
+        .hero { width: 100%; height: 70vh; position: relative; mask-image: linear-gradient(to bottom, black 95%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 95%, transparent 100%); }
         .hero img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
-        /* AJUSTE: Bajamos el título y el logo para no tapar el slider */
-        .header-main { position: relative; margin-top: 20px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
+        /* HEADER BAJADO CONSIDERABLEMENTE */
+        .header-main { position: relative; margin-top: 80px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
         
-        /* Logo sin recuadro blanco ni bordes redondeados */
-        .heart-box { width: 140px; height: 140px; flex-shrink: 0; }
+        /* Logo con bordes redondeados y fondo blanco */
+        .heart-box { width: 150px; height: 150px; flex-shrink: 0; background: white; border-radius: 2rem; overflow: hidden; padding: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .heart-box img { width: 100%; height: 100%; object-fit: contain; }
         
         @media (min-width: 1024px) { 
-            .header-main { margin-top: 50px; gap: 60px; } 
-            .heart-box { width: 400px; height: 400px; } 
+            .header-main { margin-top: 120px; gap: 60px; } 
+            .heart-box { width: 380px; height: 380px; border-radius: 4rem; padding: 25px; } 
         }
 
         .block-title { font-size: 24px; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; text-align: center; }
         .block-title span { color: var(--red); }
         .block-title::after { content: ''; display: block; width: 50px; height: 4px; background: var(--red); margin: 8px auto 0; border-radius: 10px; }
 
-        /* Cuadros al tamaño de las imágenes */
-        .card { background: var(--card); border-radius: 1.5rem; padding: 10px; border: 1px solid var(--border); transition: 0.3s; }
+        /* Tarjetas que respetan el tamaño de la imagen */
+        .card { background: var(--card); border-radius: 1.5rem; padding: 10px; border: 1px solid var(--border); transition: 0.3s; height: auto; }
         .card img { border-radius: 1rem; width: 100%; height: auto; display: block; }
 
         .player-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #000; padding: 15px 25px; z-index: 5000; display: flex; align-items: center; justify-content: space-between; border-top: 4px solid var(--red); color: white; }
@@ -50,6 +50,8 @@
         /* Centrado de conócenos */
         .grid-conocenos { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%; margin-top: 20px; }
         .grid-conocenos .card-item { width: 280px; }
+
+        .pill { display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 50px; color: white; font-weight: 800; font-size: 11px; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -65,17 +67,19 @@
     </div>
 
     <header class="header-main">
-        <div class="flex-1">
-            <h1 class="font-black text-[35px] md:text-[90px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
+        <div class="flex-1 text-right">
+            <h1 class="font-black text-[35px] md:text-[85px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
         </div>
         <div class="heart-box">
-            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png">
+            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png" alt="Logo">
         </div>
     </header>
 
-    <main id="web-content" class="pt-10 px-4 max-w-7xl mx-auto w-full"></main>
+    <main id="web-content" class="pt-20 px-4 max-w-7xl mx-auto w-full"></main>
     
-    <footer class="text-center py-20 pb-40 text-[10px] font-bold opacity-50 uppercase">© 2026 SPLENDOR DISCO | 100 TEMAS VIRALES</footer>
+    <footer class="text-center py-20 pb-40 text-[10px] font-bold opacity-50 uppercase">
+        © 2026 SPLENDOR DISCO
+    </footer>
 
     <div class="player-bar">
         <div class="flex items-center gap-4">
@@ -124,16 +128,16 @@
                 document.getElementById('slider-target').innerHTML = data.slider_principal.map(img => `<div class="swiper-slide"><img src="${img}"></div>`).join('');
                 new Swiper('.main-swiper', { loop: true, effect: 'fade', autoplay: { delay: 4500 } });
 
-                let finalHtml = '';
+                let html = '';
 
                 // 1. NOTICIAS
                 const secNoticias = data.secciones.find(s => s.nombre === "NOTICIAS");
-                if(secNoticias) finalHtml += renderCarousel(secNoticias, "noticias");
+                if(secNoticias) html += renderCarousel(secNoticias, "noticias");
 
                 // 2. CONÓCENOS (CENTRADO)
                 const secConocenos = data.secciones.find(s => s.nombre === "CONÓCENOS");
                 if(secConocenos) {
-                    finalHtml += `
+                    html += `
                     <div class="mt-16">
                         <h2 class="block-title">${secConocenos.nombre} <span>${secConocenos.sub}</span></h2>
                         <div class="grid-conocenos">
@@ -151,19 +155,19 @@
                 }
 
                 // 3. REDES
-                finalHtml += `
+                html += `
                 <div class="mt-20 text-center">
                     <h2 class="block-title">Nuestras <span>Redes</span></h2>
                     <div class="flex flex-wrap justify-center gap-4 mt-6">
-                        ${data.redes_pildoras.map(r => `<a href="${r.url}" target="_blank" class="pill flex items-center gap-2 px-6 py-3 rounded-full text-white font-bold text-[11px]" style="background:${r.color}"><i class="${r.icon}"></i> ${r.nombre}</a>`).join('')}
+                        ${data.redes_pildoras.map(r => `<a href="${r.url}" target="_blank" class="pill" style="background:${r.color}"><i class="${r.icon}"></i> ${r.nombre}</a>`).join('')}
                     </div>
                 </div>`;
 
-                // 4. VIRALES (Los 100)
+                // 4. VIRALES
                 const secViral = data.secciones.find(s => s.nombre === "LO MÁS");
-                if(secViral) finalHtml += renderCarousel(secViral, "viral");
+                if(secViral) html += renderCarousel(secViral, "viral");
 
-                document.getElementById('web-content').innerHTML = finalHtml;
+                document.getElementById('web-content').innerHTML = html;
 
                 ['noticias', 'viral'].forEach(id => {
                     new Swiper(`.s-${id}`, { slidesPerView: 'auto', spaceBetween: 20, freeMode: true });
@@ -191,7 +195,6 @@
                 </div>
             </div>`;
         }
-
         window.onload = loadData;
     </script>
 </body>
