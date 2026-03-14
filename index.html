@@ -8,7 +8,6 @@
     <meta property="og:title" content="Splendor Disco Oficial">
     <meta property="og:description" content="La radio y plataforma viral más potente de 2026.">
     <meta property="og:image" content="https://i.postimg.cc/85PR3cTQ/gvkgv.png">
-    
     <link rel="icon" type="image/png" href="https://i.postimg.cc/85PR3cTQ/gvkgv.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,34 +21,41 @@
         
         body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; transition: 0.3s; margin:0; overflow-x: hidden; }
         
-        /* Slider superior: Casi completo y con difuminado en el pie */
-        .hero { width: 100%; height: 75vh; position: relative; }
+        /* Slider con difuminado suave */
+        .hero { width: 100%; height: 70vh; position: relative; }
         .hero::after { 
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 25%;
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 35%;
             background: linear-gradient(transparent, var(--bg)); z-index: 10;
         }
         .hero img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
-        .header-main { position: relative; margin-top: -120px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
-        .heart-box { width: 150px; height: 150px; border-radius: 2.5rem; border: 8px solid white; box-shadow: 0 20px 45px rgba(0,0,0,0.2); overflow: hidden; background: white; flex-shrink: 0; }
+        /* Cabecera bajada y logo sin bordes */
+        .header-main { position: relative; margin-top: -60px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
+        .heart-box { width: 160px; height: 160px; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .heart-box img { width: 100%; height: 100%; object-fit: contain; }
         
-        @media (min-width: 1024px) { .hero { height: 90vh; } .header-main { margin-top: -250px; gap: 60px; } .heart-box { width: 420px; height: 420px; border-radius: 5.5rem; border: 15px solid white; } }
+        @media (min-width: 1024px) { 
+            .hero { height: 85vh; } 
+            .header-main { margin-top: -150px; gap: 40px; } 
+            .heart-box { width: 450px; height: 450px; } 
+        }
 
         .block-title { font-size: 24px; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; text-align: center; }
         .block-title span { color: var(--red); }
         .block-title::after { content: ''; display: block; width: 50px; height: 4px; background: var(--red); margin: 8px auto 0; border-radius: 10px; }
 
-        .card { background: var(--card); border-radius: 1.8rem; padding: 12px; border: 1px solid var(--border); transition: 0.3s; height: 100%; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .card img { border-radius: 1.5rem; width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+        /* Cuadros con imágenes completas */
+        .card { background: var(--card); border-radius: 1.8rem; padding: 15px; border: 1px solid var(--border); transition: 0.3s; height: 100%; display: flex; flex-direction: column; align-items: center; }
+        .card img { border-radius: 1.2rem; width: 100%; aspect-ratio: 16/9; object-fit: contain; background: rgba(0,0,0,0.03); }
+        body.dark-mode .card img { background: rgba(255,255,255,0.03); }
 
         .pill { display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 50px; color: white; font-weight: 800; font-size: 11px; text-transform: uppercase; transition: 0.3s; }
 
         .player-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #000; padding: 15px 25px; z-index: 5000; display: flex; align-items: center; justify-content: space-between; border-top: 4px solid var(--red); color: white; }
         
-        /* Centrado de la sección conócenos */
-        .grid-conocenos { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%; }
-        .grid-conocenos .card-item { width: 280px; }
+        /* Centrado Conócenos */
+        .grid-conocenos { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; width: 100%; }
+        .grid-conocenos .card-item { width: 300px; }
     </style>
 </head>
 <body>
@@ -68,26 +74,26 @@
 
     <header class="header-main">
         <div class="flex-1">
-            <h1 class="font-black text-[35px] md:text-[90px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
+            <h1 class="font-black text-[38px] md:text-[95px] leading-[0.85] uppercase tracking-tighter">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
         </div>
         <div class="heart-box">
-            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png" class="w-full h-full object-contain p-4 bg-white">
+            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png">
         </div>
     </header>
 
-    <main id="web-content" class="pt-10 px-4 max-w-7xl mx-auto w-full"></main>
+    <main id="web-content" class="pt-20 px-4 max-w-7xl mx-auto w-full"></main>
     
-    <footer class="text-center py-20 pb-40 text-[10px] font-bold opacity-50 uppercase">© 2026 SPLENDOR DISCO | 100 TEMAS VIRALES</footer>
+    <footer class="text-center py-20 pb-40 text-[10px] font-bold opacity-50 uppercase">© 2026 SPLENDOR DISCO | LA MÁS VIRAL DEL PAÍS</footer>
 
     <div class="player-bar">
         <div class="flex items-center gap-4">
-            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png" class="w-12 h-12 rounded-xl object-contain bg-white">
+            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png" class="w-12 h-12 rounded-lg object-contain bg-white/10">
             <div>
                 <p class="font-bold text-[10px] uppercase truncate w-32">Splendor Live</p>
-                <span class="text-red-500 text-[8px] font-black uppercase">Escuchando Ahora</span>
+                <span class="text-red-500 text-[8px] font-black uppercase tracking-widest">En Vivo</span>
             </div>
         </div>
-        <button id="play-btn" class="bg-[#ff0000] w-12 h-12 rounded-full text-white flex items-center justify-center text-xl">
+        <button id="play-btn" class="bg-[#ff0000] w-12 h-12 rounded-full text-white flex items-center justify-center text-xl shadow-lg shadow-red-500/20">
             <i class="fas fa-play" id="play-icon"></i>
         </button>
     </div>
@@ -122,19 +128,19 @@
                 const data = await res.json();
 
                 document.getElementById('slider-target').innerHTML = data.slider_principal.map(img => `<div class="swiper-slide"><img src="${img}"></div>`).join('');
-                new Swiper('.main-swiper', { loop: true, effect: 'fade', autoplay: { delay: 4500 } });
+                new Swiper('.main-swiper', { loop: true, effect: 'fade', autoplay: { delay: 5000 } });
 
                 let finalHtml = '';
 
-                // 1. NOTICIAS
+                // NOTICIAS
                 const secNoticias = data.secciones.find(s => s.nombre === "NOTICIAS");
                 if(secNoticias) finalHtml += renderSection(secNoticias, "noticias");
 
-                // 2. CONÓCENOS (CENTRADOS)
+                // CONÓCENOS CENTRADO
                 const secConocenos = data.secciones.find(s => s.nombre === "CONÓCENOS");
                 if(secConocenos) {
                     finalHtml += `
-                    <div class="mt-16">
+                    <div class="mt-24">
                         <h2 class="block-title">${secConocenos.nombre} <span>${secConocenos.sub}</span></h2>
                         <div class="grid-conocenos">
                             ${secConocenos.items.map(item => `
@@ -142,7 +148,7 @@
                                     <div class="card">
                                         <a href="${item.url}" target="_blank">
                                             <img src="${item.img}">
-                                            <p class="mt-3 text-center text-[11px] font-bold uppercase truncate">${item.titulo}</p>
+                                            <p class="mt-4 text-center text-[12px] font-black uppercase">${item.titulo}</p>
                                         </a>
                                     </div>
                                 </div>`).join('')}
@@ -150,26 +156,25 @@
                     </div>`;
                 }
 
-                // 3. REDES
+                // REDES
                 finalHtml += `
-                <div class="mt-20 text-center">
+                <div class="mt-24 text-center">
                     <h2 class="block-title">Nuestras <span>Redes</span></h2>
-                    <div class="flex flex-wrap justify-center gap-4 mt-6">
+                    <div class="flex flex-wrap justify-center gap-4 mt-8">
                         ${data.redes_pildoras.map(r => `<a href="${r.url}" target="_blank" class="pill" style="background:${r.color}"><i class="${r.icon} text-lg"></i> ${r.nombre}</a>`).join('')}
                     </div>
                 </div>`;
 
-                // 4. VIRALES (Los 100 temas)
+                // VIRALES
                 const secViral = data.secciones.find(s => s.nombre === "LO MÁS");
                 if(secViral) finalHtml += renderSection(secViral, "viral");
 
                 document.getElementById('web-content').innerHTML = finalHtml;
 
-                // Swipers para Noticias y Virales
                 ['noticias', 'viral'].forEach(id => {
                     new Swiper(`.s-${id}`, {
                         slidesPerView: 'auto',
-                        spaceBetween: 20,
+                        spaceBetween: 25,
                         freeMode: { enabled: true, momentum: true },
                         grabCursor: true
                     });
@@ -180,16 +185,16 @@
 
         function renderSection(sec, id) {
             return `
-            <div class="mt-16">
+            <div class="mt-24">
                 <h2 class="block-title">${sec.nombre} <span>${sec.sub}</span></h2>
                 <div class="swiper s-${id} !overflow-visible">
                     <div class="swiper-wrapper">
                         ${sec.items.map(item => `
-                            <div class="swiper-slide" style="width:260px">
+                            <div class="swiper-slide" style="width:280px">
                                 <div class="card">
                                     <a href="${item.url}" target="_blank">
                                         <img src="${item.img}">
-                                        <p class="mt-3 text-center text-[11px] font-bold uppercase truncate">${item.titulo}</p>
+                                        <p class="mt-4 text-center text-[11px] font-bold uppercase truncate w-full">${item.titulo}</p>
                                     </a>
                                 </div>
                             </div>`).join('')}
