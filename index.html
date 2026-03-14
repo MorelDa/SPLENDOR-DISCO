@@ -8,7 +8,6 @@
     <meta property="og:title" content="Splendor Disco Oficial">
     <meta property="og:description" content="La radio y plataforma viral más potente de 2026.">
     <meta property="og:image" content="https://i.postimg.cc/gJkV5jGW/k.png">
-    
     <link rel="icon" type="image/png" href="https://i.postimg.cc/gJkV5jGW/k.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,51 +22,41 @@
         body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; transition: 0.3s; margin:0; overflow-x: hidden; }
         
         /* Slider superior ajustado */
-        .hero { width: 100%; height: 60vh; position: relative; mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); }
+        .hero { width: 100%; height: 75vh; position: relative; mask-image: linear-gradient(to bottom, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%); }
         .hero img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
-        /* HEADER BAJADO PARA MOSTRAR SLIDER COMPLETO */
-        .header-main { position: relative; margin-top: -50px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
+        /* AJUSTE: Bajamos el título y el logo para no tapar el slider */
+        .header-main { position: relative; margin-top: 20px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
         
-        /* CORREGIDO: Logo que rellena el cuadro, sin bordes blancos ni redondeados */
-        .heart-box { width: 150px; height: 150px; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        /* Logo sin recuadro blanco ni bordes redondeados */
+        .heart-box { width: 140px; height: 140px; flex-shrink: 0; }
         .heart-box img { width: 100%; height: 100%; object-fit: contain; }
         
         @media (min-width: 1024px) { 
-            .hero { height: 80vh; } 
-            .header-main { margin-top: -150px; gap: 60px; } 
-            .heart-box { width: 420px; height: 420px; } 
+            .header-main { margin-top: 50px; gap: 60px; } 
+            .heart-box { width: 400px; height: 400px; } 
         }
 
         .block-title { font-size: 24px; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; text-align: center; }
         .block-title span { color: var(--red); }
         .block-title::after { content: ''; display: block; width: 50px; height: 4px; background: var(--red); margin: 8px auto 0; border-radius: 10px; }
 
-        /* CORREGIDO: Cuadros al tamaño de las imágenes, sin recortar */
-        .card { background: var(--card); border-radius: 1.8rem; padding: 12px; border: 1px solid var(--border); transition: 0.3s; height: auto; display: flex; flex-direction: column; align-items: center; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        
-        /* CORREGIDO: Muestra imágenes completas respetando su formato original */
-        .card img { border-radius: 1.5rem; width: 100%; height: auto; object-fit: contain; }
-
-        .pill { display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 50px; color: white; font-weight: 800; font-size: 11px; text-transform: uppercase; }
+        /* Cuadros al tamaño de las imágenes */
+        .card { background: var(--card); border-radius: 1.5rem; padding: 10px; border: 1px solid var(--border); transition: 0.3s; }
+        .card img { border-radius: 1rem; width: 100%; height: auto; display: block; }
 
         .player-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #000; padding: 15px 25px; z-index: 5000; display: flex; align-items: center; justify-content: space-between; border-top: 4px solid var(--red); color: white; }
         
-        .swiper-wrapper { transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1) !important; }
-        
-        /* Centrado de la sección conócenos */
-        .grid-conocenos { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%; margin-top: 30px; }
+        /* Centrado de conócenos */
+        .grid-conocenos { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%; margin-top: 20px; }
         .grid-conocenos .card-item { width: 280px; }
     </style>
 </head>
 <body>
 
-    <button id="mode-btn" style="position:fixed; top:20px; right:20px; z-index:6000; background:var(--red); color:white; width:45px; height:45px; border-radius:50%; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;">
+    <button id="mode-btn" style="position:fixed; top:20px; right:20px; z-index:6000; background:var(--red); color:white; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:none; cursor:pointer;">
         <i class="fas fa-moon" id="mode-icon"></i>
     </button>
-
-    <audio id="main-stream" crossorigin="anonymous"></audio>
 
     <div class="hero">
         <div class="swiper main-swiper h-full w-full">
@@ -80,17 +69,17 @@
             <h1 class="font-black text-[35px] md:text-[90px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
         </div>
         <div class="heart-box">
-            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png" class="w-full h-full object-contain bg-white rounded-[2rem] p-4">
+            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png">
         </div>
     </header>
 
     <main id="web-content" class="pt-10 px-4 max-w-7xl mx-auto w-full"></main>
     
-    <footer class="text-center py-20 pb-40 text-[10px] font-bold opacity-50 uppercase">© 2026 SPLENDOR DISCO | 100% VIRAL</footer>
+    <footer class="text-center py-20 pb-40 text-[10px] font-bold opacity-50 uppercase">© 2026 SPLENDOR DISCO | 100 TEMAS VIRALES</footer>
 
     <div class="player-bar">
         <div class="flex items-center gap-4">
-            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png" class="w-12 h-12 rounded-xl object-contain bg-white">
+            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png" class="w-12 h-12 rounded-lg object-contain bg-white p-1">
             <div>
                 <p class="font-bold text-[10px] uppercase truncate w-32">Splendor Live</p>
                 <span class="text-red-500 text-[8px] font-black uppercase">En Directo</span>
@@ -100,6 +89,8 @@
             <i class="fas fa-play" id="play-icon"></i>
         </button>
     </div>
+
+    <audio id="main-stream" crossorigin="anonymous"></audio>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
@@ -130,20 +121,19 @@
                 const res = await fetch('datos.json?v=' + Math.random());
                 const data = await res.json();
 
-                // Slider Principal
                 document.getElementById('slider-target').innerHTML = data.slider_principal.map(img => `<div class="swiper-slide"><img src="${img}"></div>`).join('');
                 new Swiper('.main-swiper', { loop: true, effect: 'fade', autoplay: { delay: 4500 } });
 
-                let html = '';
+                let finalHtml = '';
 
                 // 1. NOTICIAS
                 const secNoticias = data.secciones.find(s => s.nombre === "NOTICIAS");
-                if(secNoticias) html += renderSection(secNoticias, "noticias");
+                if(secNoticias) finalHtml += renderCarousel(secNoticias, "noticias");
 
-                // 2. CONÓCENOS (CENTRADOS)
+                // 2. CONÓCENOS (CENTRADO)
                 const secConocenos = data.secciones.find(s => s.nombre === "CONÓCENOS");
                 if(secConocenos) {
-                    html += `
+                    finalHtml += `
                     <div class="mt-16">
                         <h2 class="block-title">${secConocenos.nombre} <span>${secConocenos.sub}</span></h2>
                         <div class="grid-conocenos">
@@ -161,34 +151,28 @@
                 }
 
                 // 3. REDES
-                html += `
+                finalHtml += `
                 <div class="mt-20 text-center">
                     <h2 class="block-title">Nuestras <span>Redes</span></h2>
                     <div class="flex flex-wrap justify-center gap-4 mt-6">
-                        ${data.redes_pildoras.map(r => `<a href="${r.url}" target="_blank" class="pill" style="background:${r.color}"><i class="${r.icon} text-lg"></i> ${r.nombre}</a>`).join('')}
+                        ${data.redes_pildoras.map(r => `<a href="${r.url}" target="_blank" class="pill flex items-center gap-2 px-6 py-3 rounded-full text-white font-bold text-[11px]" style="background:${r.color}"><i class="${r.icon}"></i> ${r.nombre}</a>`).join('')}
                     </div>
                 </div>`;
 
-                // 4. VIRALES (Los 100 temas)
+                // 4. VIRALES (Los 100)
                 const secViral = data.secciones.find(s => s.nombre === "LO MÁS");
-                if(secViral) html += renderSection(secViral, "viral");
+                if(secViral) finalHtml += renderCarousel(secViral, "viral");
 
-                document.getElementById('web-content').innerHTML = html;
+                document.getElementById('web-content').innerHTML = finalHtml;
 
-                // Swipers para Noticias y Virales
                 ['noticias', 'viral'].forEach(id => {
-                    new Swiper(`.s-${id}`, {
-                        slidesPerView: 'auto',
-                        spaceBetween: 20,
-                        freeMode: { enabled: true, momentum: true },
-                        grabCursor: true
-                    });
+                    new Swiper(`.s-${id}`, { slidesPerView: 'auto', spaceBetween: 20, freeMode: true });
                 });
 
-            } catch (err) { console.error(err); }
+            } catch (e) { console.error(e); }
         }
 
-        function renderSection(sec, id) {
+        function renderCarousel(sec, id) {
             return `
             <div class="mt-16">
                 <h2 class="block-title">${sec.nombre} <span>${sec.sub}</span></h2>
@@ -199,7 +183,7 @@
                                 <div class="card">
                                     <a href="${item.url}" target="_blank">
                                         <img src="${item.img}">
-                                        <p class="mt-3 text-center text-[11px] font-bold uppercase truncate">${item.titulo}</p>
+                                        <p class="mt-3 text-center text-[10px] font-black uppercase truncate">${item.titulo}</p>
                                     </a>
                                 </div>
                             </div>`).join('')}
