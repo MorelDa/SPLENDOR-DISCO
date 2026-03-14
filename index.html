@@ -21,21 +21,19 @@
         
         body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; -webkit-tap-highlight-color: transparent; transition: 0.3s; }
         
-        /* HERO EXTENDIDO: Ahora muestra más hacia abajo (85vh) */
+        /* HERO EXTENDIDO */
         .hero { 
             width: 100%; height: 85vh; position: relative; overflow: hidden;
             mask-image: linear-gradient(to bottom, black 90%, transparent 100%); 
             -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%); 
             background: #000;
         }
-        .hero video {
-            width: 100%; height: 100%; object-fit: cover;
-        }
+        .hero video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* HEADER */
+        /* HEADER: POSICIÓN MÁS ALTA */
         .header-main { 
             position: relative; 
-            margin-top: -100px; /* Ajustado para el nuevo largo del video */
+            margin-top: -180px; /* SUBIDO: Antes -100px */
             padding: 0 5%; 
             display: flex; flex-direction: row; align-items: center; 
             justify-content: space-between; z-index: 100; width: 100%; box-sizing: border-box;
@@ -43,19 +41,21 @@
 
         .main-title { 
             font-weight: 900; text-transform: uppercase; line-height: 0.85; 
-            font-size: 32px; letter-spacing: -1px; flex: 1; 
+            font-size: 32px; letter-spacing: -1px; flex: 1;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Sombra para resaltar sobre el video */
+            color: white; /* Forzado a blanco para contraste sobre video */
         }
         
         .heart-box { 
             width: 125px; height: 125px; border-radius: 2rem; 
-            border: 5px solid white; box-shadow: 0 15px 35px rgba(0,0,0,0.3); 
+            border: 5px solid white; box-shadow: 0 15px 35px rgba(0,0,0,0.4); 
             overflow: hidden; background: white; flex-shrink: 0; 
         }
         .heart-box img { width: 100%; height: 100%; object-fit: contain; }
         
         @media (min-width: 1024px) { 
             .hero { height: 90vh; }
-            .header-main { margin-top: -200px; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0; } 
+            .header-main { margin-top: -280px; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0; } 
             .heart-box { width: 400px; height: 400px; border-radius: 5rem; border: 15px solid white; } 
             .main-title { font-size: 95px; }
         }
@@ -77,9 +77,8 @@
     </button>
 
     <div class="hero">
-        <video autoplay muted loop playsinline poster="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
+        <video autoplay muted loop playsinline>
             <source src="https://github.com/MorelDa/SPLENDOR-DISCO/raw/refs/heads/main/FBDown.to-1431752981895860-(1080p).mp4" type="video/mp4">
-            Tu navegador no soporta video.
         </video>
     </div>
 
@@ -92,7 +91,7 @@
         </div>
     </header>
 
-    <main id="web-content" class="pt-10 px-4 max-w-7xl mx-auto w-full"></main>
+    <main id="web-content" class="pt-20 px-4 max-w-7xl mx-auto w-full"></main>
     
     <footer class="text-center py-20 pb-40 text-[10px] font-bold opacity-50 uppercase">© 2026 SPLENDOR DISCO</footer>
 
@@ -140,25 +139,20 @@
                 const data = await res.json();
                 let html = '';
                 
-                // NOTICIAS
                 const secNoticias = data.secciones.find(s => s.nombre === "NOTICIAS");
                 if(secNoticias) html += renderCarousel(secNoticias, 0);
 
-                // CONÓCENOS
                 const secConocenos = data.secciones.find(s => s.nombre === "CONÓCENOS");
                 if(secConocenos) {
                     html += `<div class="mt-16"><h2 class="block-title">${secConocenos.nombre} <span>${secConocenos.sub}</span></h2><div class="swiper s-conocenos !overflow-visible"><div class="swiper-wrapper">${secConocenos.items.map(i => `<div class="swiper-slide" style="width:220px"><div class="card"><a href="${i.url}" target="_blank"><img src="${i.img}"><p class="mt-3 text-center text-[11px] font-bold uppercase truncate">${i.titulo}</p></a></div></div>`).join('')}</div></div></div>`;
                 }
 
-                // TV PRIORITARIA
                 if (data.url_tv) {
                     html += `<div class="mt-20"><h2 class="block-title">TV EN <span>VIVO</span></h2><div class="card overflow-hidden bg-black !p-0 aspect-video"><video id="tv-player" class="w-full h-full" controls playsinline></video></div></div>`;
                 }
 
-                // REDES
                 html += `<div class="mt-20 text-center"><h2 class="block-title">Nuestras <span>Redes</span></h2><div class="flex flex-wrap justify-center gap-4 mt-6">${data.redes_pildoras.map(r => `<a href="${r.url}" target="_blank" class="px-8 py-3 rounded-full text-white font-bold uppercase text-[10px]" style="background:${r.color}; display:flex; align-items:center; gap:8px;"><i class="${r.icon}"></i> ${r.nombre}</a>`).join('')}</div></div>`;
 
-                // LO MÁS VIRAL
                 const secViral = data.secciones.find(s => s.nombre === "LO MÁS");
                 if(secViral) html += renderCarousel(secViral, 1);
 
