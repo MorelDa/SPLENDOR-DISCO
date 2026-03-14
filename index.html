@@ -6,9 +6,9 @@
     <title>Splendor Disco | Oficial</title>
 
     <meta property="og:title" content="Splendor Disco Oficial">
-    <meta property="og:description" content="OTRO LEVEL.">
-    <meta property="og:image" content="https://i.postimg.cc/85PR3cTQ/gvkgv.png">
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/85PR3cTQ/gvkgv.png">
+    <meta property="og:description" content="La radio y plataforma viral más potente de 2026.">
+    <meta property="og:image" content="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
@@ -21,37 +21,44 @@
         
         body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; transition: 0.3s; margin:0; overflow-x: hidden; }
         
-        /* Slider con difuminado muy suave en el pie */
-        .hero { width: 100%; height: 70vh; position: relative; mask-image: linear-gradient(to bottom, black 95%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 95%, transparent 100%); }
+        /* Slider con difuminado sutil en el pie (95% de visibilidad) */
+        .hero { width: 100%; height: 75vh; position: relative; mask-image: linear-gradient(to bottom, black 95%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 95%, transparent 100%); }
         .hero img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
-        /* HEADER BAJADO CONSIDERABLEMENTE */
-        .header-main { position: relative; margin-top: 80px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
+        /* AJUSTE: Bajamos el header para mostrar el slider completo */
+        .header-main { position: relative; margin-top: 40px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
         
-        /* Logo con bordes redondeados y fondo blanco */
-        .heart-box { width: 150px; height: 150px; flex-shrink: 0; background: white; border-radius: 2rem; overflow: hidden; padding: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        /* Logo limpio, sin recuadro blanco ni bordes redondeados */
+        .heart-box { width: 160px; height: 160px; flex-shrink: 0; }
         .heart-box img { width: 100%; height: 100%; object-fit: contain; }
         
         @media (min-width: 1024px) { 
-            .header-main { margin-top: 120px; gap: 60px; } 
-            .heart-box { width: 380px; height: 380px; border-radius: 4rem; padding: 25px; } 
+            .hero { height: 85vh; }
+            .header-main { margin-top: 60px; gap: 60px; } 
+            .heart-box { width: 420px; height: 420px; } 
         }
 
         .block-title { font-size: 24px; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; text-align: center; }
         .block-title span { color: var(--red); }
         .block-title::after { content: ''; display: block; width: 50px; height: 4px; background: var(--red); margin: 8px auto 0; border-radius: 10px; }
 
-        /* Tarjetas que respetan el tamaño de la imagen */
-        .card { background: var(--card); border-radius: 1.5rem; padding: 10px; border: 1px solid var(--border); transition: 0.3s; height: auto; }
-        .card img { border-radius: 1rem; width: 100%; height: auto; display: block; }
+        /* Cuadros que respetan el formato de imagen original */
+        .card { background: var(--card); border-radius: 1.5rem; padding: 10px; border: 1px solid var(--border); transition: 0.3s; height: auto; display: flex; flex-direction: column; align-items: center;}
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        /* Muestra imágenes completas respetando su formato original */
+        .card img { border-radius: 1rem; width: 100%; height: auto; object-fit: contain; display: block; }
 
         .player-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #000; padding: 15px 25px; z-index: 5000; display: flex; align-items: center; justify-content: space-between; border-top: 4px solid var(--red); color: white; }
         
-        /* Centrado de conócenos */
+        /* Centrado de la sección conócenos */
         .grid-conocenos { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%; margin-top: 20px; }
         .grid-conocenos .card-item { width: 280px; }
 
-        .pill { display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 50px; color: white; font-weight: 800; font-size: 11px; text-transform: uppercase; }
+        .pill { display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 50px; color: white; font-weight: 800; font-size: 11px; text-transform: uppercase; transition: 0.3s; }
+        .pill:hover { transform: scale(1.05); opacity: 0.9; }
+
+        .swiper-wrapper { transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1) !important; }
     </style>
 </head>
 <body>
@@ -62,20 +69,21 @@
 
     <div class="hero">
         <div class="swiper main-swiper h-full w-full">
-            <div class="swiper-wrapper" id="slider-target"></div>
+            <div class="swiper-wrapper" id="slider-target">
+                </div>
         </div>
     </div>
 
     <header class="header-main">
-        <div class="flex-1 text-right">
-            <h1 class="font-black text-[35px] md:text-[85px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
+        <div class="flex-1">
+            <h1 class="font-black text-[35px] md:text-[90px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
         </div>
         <div class="heart-box">
-            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png" alt="Logo">
+            <img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" alt="Logo Splendor Disco">
         </div>
     </header>
 
-    <main id="web-content" class="pt-20 px-4 max-w-7xl mx-auto w-full"></main>
+    <main id="web-content" class="pt-10 px-4 max-w-7xl mx-auto w-full"></main>
     
     <footer class="text-center py-20 pb-40 text-[10px] font-bold opacity-50 uppercase">
         © 2026 SPLENDOR DISCO
@@ -83,7 +91,7 @@
 
     <div class="player-bar">
         <div class="flex items-center gap-4">
-            <img src="https://i.postimg.cc/85PR3cTQ/gvkgv.png" class="w-12 h-12 rounded-lg object-contain bg-white p-1">
+            <img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" class="w-12 h-12 rounded-lg object-contain bg-white p-1">
             <div>
                 <p class="font-bold text-[10px] uppercase truncate w-32">Splendor Live</p>
                 <span class="text-red-500 text-[8px] font-black uppercase">En Directo</span>
@@ -98,6 +106,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        // Configuración de Audio
         const audio = document.getElementById('main-stream');
         const playBtn = document.getElementById('play-btn');
         const streamUrl = "https://miestacion.turadioonline.com.ar:8342/stream";
@@ -114,27 +123,33 @@
             }
         };
 
+        // Modo Oscuro
         document.getElementById('mode-btn').onclick = () => {
             document.body.classList.toggle('dark-mode');
             const icon = document.getElementById('mode-icon');
             icon.className = document.body.classList.contains('dark-mode') ? 'fas fa-sun' : 'fas fa-moon';
         };
 
+        // Carga de Datos desde JSON
         async function loadData() {
             try {
                 const res = await fetch('datos.json?v=' + Math.random());
                 const data = await res.json();
 
-                document.getElementById('slider-target').innerHTML = data.slider_principal.map(img => `<div class="swiper-slide"><img src="${img}"></div>`).join('');
+                // 1. Slider
+                document.getElementById('slider-target').innerHTML = data.slider_principal.map(img => `
+                    <div class="swiper-slide"><img src="${img}"></div>
+                `).join('');
+                
                 new Swiper('.main-swiper', { loop: true, effect: 'fade', autoplay: { delay: 4500 } });
 
                 let html = '';
 
-                // 1. NOTICIAS
+                // 2. Noticias
                 const secNoticias = data.secciones.find(s => s.nombre === "NOTICIAS");
                 if(secNoticias) html += renderCarousel(secNoticias, "noticias");
 
-                // 2. CONÓCENOS (CENTRADO)
+                // 3. Conócenos
                 const secConocenos = data.secciones.find(s => s.nombre === "CONÓCENOS");
                 if(secConocenos) {
                     html += `
@@ -154,26 +169,30 @@
                     </div>`;
                 }
 
-                // 3. REDES
+                // 4. Redes
                 html += `
                 <div class="mt-20 text-center">
                     <h2 class="block-title">Nuestras <span>Redes</span></h2>
                     <div class="flex flex-wrap justify-center gap-4 mt-6">
-                        ${data.redes_pildoras.map(r => `<a href="${r.url}" target="_blank" class="pill" style="background:${r.color}"><i class="${r.icon}"></i> ${r.nombre}</a>`).join('')}
+                        ${data.redes_pildoras.map(r => `
+                            <a href="${r.url}" target="_blank" class="pill" style="background:${r.color}">
+                                <i class="${r.icon}"></i> ${r.nombre}
+                            </a>`).join('')}
                     </div>
                 </div>`;
 
-                // 4. VIRALES
+                // 5. Virales (Aquí se cargan los 100 temas del JSON)
                 const secViral = data.secciones.find(s => s.nombre === "LO MÁS");
                 if(secViral) html += renderCarousel(secViral, "viral");
 
                 document.getElementById('web-content').innerHTML = html;
 
+                // Iniciar Carruceles Laterales
                 ['noticias', 'viral'].forEach(id => {
                     new Swiper(`.s-${id}`, { slidesPerView: 'auto', spaceBetween: 20, freeMode: true });
                 });
 
-            } catch (e) { console.error(e); }
+            } catch (e) { console.error("Error cargando datos:", e); }
         }
 
         function renderCarousel(sec, id) {
@@ -195,6 +214,7 @@
                 </div>
             </div>`;
         }
+
         window.onload = loadData;
     </script>
 </body>
