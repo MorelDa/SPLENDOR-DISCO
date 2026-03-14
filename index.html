@@ -6,7 +6,6 @@
     <title>Splendor Disco | Oficial</title>
 
     <meta property="og:title" content="Splendor Disco Oficial">
-    <meta property="og:description" content="La radio y plataforma viral más potente de 2026.">
     <meta property="og:image" content="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
     <link rel="icon" type="image/png" href="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png">
 
@@ -21,37 +20,59 @@
         
         body { background: var(--bg); color: var(--text); font-family: 'Montserrat', sans-serif; transition: 0.3s; margin:0; overflow-x: hidden; }
         
-        /* CORREGIDO: El slider respeta el tamaño real (height: auto)
-           NUEVO EFECTO: Máscara de opacidad para fundir el pie de la imagen con el fondo (difuminado de corte).
-        */
+        /* Slider Proporcional con Difuminado de Corte */
         .hero { 
             width: 100%; 
             height: auto; 
             position: relative; 
             line-height: 0;
-            /* La imagen es 100% visible hasta el 85%, luego se desvanece suavemente hasta el 100% (transparente) */
-            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
         }
         .hero img { width: 100%; height: auto; display: block; object-fit: contain; }
 
-        /* Header posicionado justo debajo del slider desvanecido */
-        .header-main { position: relative; margin-top: 20px; padding: 0 6%; display: flex; align-items: center; justify-content: center; gap: 20px; z-index: 100; }
+        /* HEADER SUBIDO: Superpuesto ligeramente sobre el slider */
+        .header-main { 
+            position: relative; 
+            margin-top: -60px; /* Ajuste para subirlo sobre el slider */
+            padding: 0 6%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 20px; 
+            z-index: 100; 
+        }
         
-        .heart-box { width: 140px; height: 140px; flex-shrink: 0; }
+        .heart-box { width: 150px; height: 150px; flex-shrink: 0; }
         .heart-box img { width: 100%; height: 100%; object-fit: contain; }
         
         @media (min-width: 1024px) { 
-            .header-main { margin-top: 40px; gap: 60px; } 
-            .heart-box { width: 380px; height: 380px; } 
+            .header-main { margin-top: -120px; gap: 60px; } 
+            .heart-box { width: 420px; height: 420px; } 
         }
 
-        /* Títulos de bloques unificados */
-        .block-title { font-size: 18px; font-weight: 900; text-transform: uppercase; margin-bottom: 25px; text-align: center; letter-spacing: 1px; }
+        /* TITULOS DE BLOQUE MÁS GRANDES */
+        .block-title { 
+            font-size: 32px; /* Aumentado */
+            font-weight: 900; 
+            text-transform: uppercase; 
+            margin-bottom: 30px; 
+            text-align: center; 
+            letter-spacing: -1px;
+            line-height: 1;
+        }
         .block-title span { color: var(--red); }
-        .block-title::after { content: ''; display: block; width: 40px; height: 3px; background: var(--red); margin: 6px auto 0; border-radius: 10px; }
+        .block-title::after { 
+            content: ''; 
+            display: block; 
+            width: 60px; 
+            height: 5px; 
+            background: var(--red); 
+            margin: 10px auto 0; 
+            border-radius: 10px; 
+        }
 
-        /* Tarjetas proporcionales */
+        /* Tarjetas */
         .card { background: var(--card); border-radius: 1.5rem; padding: 10px; border: 1px solid var(--border); transition: 0.3s; height: auto; }
         .card img { border-radius: 1rem; width: 100%; height: auto; display: block; }
 
@@ -61,10 +82,6 @@
         .grid-conocenos .card-item { width: 280px; }
 
         .pill { display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 50px; color: white; font-weight: 800; font-size: 11px; text-transform: uppercase; }
-        
-        /* Swiper Fix para fade con autoHeight */
-        .swiper-fade .swiper-slide { pointer-events: none; transition-property: opacity; }
-        .swiper-fade .swiper-slide-active { pointer-events: auto; }
     </style>
 </head>
 <body>
@@ -75,17 +92,16 @@
 
     <div class="hero">
         <div class="swiper main-swiper w-full">
-            <div class="swiper-wrapper" id="slider-target">
-                </div>
+            <div class="swiper-wrapper" id="slider-target"></div>
         </div>
     </div>
 
     <header class="header-main">
         <div class="flex-1">
-            <h1 class="font-black text-[35px] md:text-[90px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
+            <h1 class="font-black text-[35px] md:text-[95px] leading-[0.8] uppercase">SPLENDOR<br><span class="text-[#ff0000]">DISCO.</span></h1>
         </div>
         <div class="heart-box">
-            <img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" alt="Logo Splendor">
+            <img src="https://i.postimg.cc/bNNwX8jQ/LOGO-SPLENDOR-DISCO.png" alt="Logo Principal">
         </div>
     </header>
 
@@ -139,24 +155,24 @@
                 const res = await fetch('datos.json?v=' + Math.random());
                 const data = await res.json();
 
-                // 1. Slider Principal
                 document.getElementById('slider-target').innerHTML = data.slider_principal.map(img => `
                     <div class="swiper-slide"><img src="${img}"></div>
                 `).join('');
                 
-                // Configuración de Swiper para fade suave con autoHeight para imágenes completas
                 new Swiper('.main-swiper', { 
                     loop: true, 
                     effect: 'fade', 
                     fadeEffect: { crossFade: true },
                     autoplay: { delay: 4500 },
-                    autoHeight: true // Fundamental para respetar alturas variables sin recortar
+                    autoHeight: true 
                 });
 
                 let html = '';
+                // NOTICIAS
                 const secNoticias = data.secciones.find(s => s.nombre === "NOTICIAS");
                 if(secNoticias) html += renderCarousel(secNoticias, "noticias");
 
+                // CONÓCENOS
                 const secConocenos = data.secciones.find(s => s.nombre === "CONÓCENOS");
                 if(secConocenos) {
                     html += `
@@ -176,6 +192,7 @@
                     </div>`;
                 }
 
+                // REDES
                 html += `
                 <div class="mt-20 text-center">
                     <h2 class="block-title">Nuestras <span>Redes</span></h2>
@@ -187,17 +204,17 @@
                     </div>
                 </div>`;
 
+                // VIRAL
                 const secViral = data.secciones.find(s => s.nombre === "LO MÁS");
                 if(secViral) html += renderCarousel(secViral, "viral");
 
                 document.getElementById('web-content').innerHTML = html;
 
-                // Iniciar Carruseles laterales
                 ['noticias', 'viral'].forEach(id => {
                     new Swiper(`.s-${id}`, { slidesPerView: 'auto', spaceBetween: 20, freeMode: true });
                 });
 
-            } catch (e) { console.error("Error cargando datos:", e); }
+            } catch (e) { console.error(e); }
         }
 
         function renderCarousel(sec, id) {
